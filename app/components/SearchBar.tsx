@@ -1,11 +1,37 @@
+"use client";
+
 import Styles from "./SearchBar.module.css"
 import Image from "next/image";
+import { useState } from "react"
 
 export default function SearchBar() {
+    const [input, setInput] = useState("");
+
+    const fetchData = (value) => {
+        fetch("https://jsonplaceholder.typicode.com/users")
+          .then((response) => response.json())
+          .then((json) => {
+            const results = json.filter((user: any) => {
+              return (
+                value &&
+                user &&
+                user.name &&
+                user.name.toLowerCase().includes(value)
+              );
+            });
+            console.log(results);
+          });
+      };
+
+    const handleChange = (value: any) => {
+        setInput(value)
+        fetchData(value)
+    };
+
     return (
         <main>
            <div className={Styles.container}>
-                <input className={Styles.inputBox} type="text" placeholder="search"></input>
+                <input className={Styles.inputBox} type="text" placeholder="search" value={input} onChange={(e) => handleChange(e.target.value)}></input>
                 <button className={Styles.theButton}>
                      <Image 
                         priority
