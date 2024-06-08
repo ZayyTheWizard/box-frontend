@@ -4,10 +4,10 @@ import Styles from "./SearchBar.module.css"
 import Image from "next/image";
 import { useState } from "react"
 
-export default function SearchBar() {
+export default function SearchBar({setResults}: any) {
     const [input, setInput] = useState("");
 
-    const fetchData = (value) => {
+    const fetchData = (value: any) => {
         fetch("https://jsonplaceholder.typicode.com/users")
           .then((response) => response.json())
           .then((json) => {
@@ -15,11 +15,12 @@ export default function SearchBar() {
               return (
                 value &&
                 user &&
+                value.toLowerCase() &&
                 user.name &&
                 user.name.toLowerCase().includes(value)
               );
             });
-            console.log(results);
+            setResults(results);
           });
       };
 
