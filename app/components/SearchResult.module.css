@@ -1,0 +1,8 @@
+.SearchResults{
+    padding: 10px 20px;
+}
+
+.SearchResults:hover {
+    box-shadow: 1px 1px 20px limegreen;
+    cursor: pointer;
+}
