@@ -1,0 +1,8 @@
+.resultsList {
+    width: 15%;
+    height: 32%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    background-color: transparent;
+}

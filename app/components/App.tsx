@@ -1,10 +1,11 @@
 "use client";
 
-import VideoBg from "./VideoBg"
+import VideoBg from "./VideoBG/VideoBg"
 import Styles from "./App.module.css"
-import SearchBar from "./SearchBar"
+import SearchBar from "./Searchbar/SearchBar"
 import {useState} from "react"
-import SearchResultList from "./SearchResultList";
+import SearchResultList from "./SearchResultsList/SearchResultList";
+import MyThree from "./DjVisualizer/Threejs";
 
 export default function App() {
     const [results, setResults] = useState([]);
@@ -14,6 +15,9 @@ export default function App() {
             <div className={Styles.content}>
                 <SearchBar setResults={setResults}/>
                 <SearchResultList results={results}/>
+            </div>
+            <div>
+                <MyThree />
             </div>
         </main>
     )
