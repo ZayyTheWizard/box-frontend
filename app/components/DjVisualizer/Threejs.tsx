@@ -12,7 +12,9 @@ export default function MyThree() {
   useEffect(() => {
     let cleanup: any;
    if (refContainer.current) {
-    cleanup = initThreeJs(refContainer.current)
+    initThreeJs(refContainer.current).then((cleanupFunction) => {
+      cleanup = cleanupFunction;
+    });
    }
    return () => {
     if (cleanup) cleanup();

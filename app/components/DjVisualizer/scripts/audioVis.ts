@@ -4,7 +4,7 @@ import vertexShader from '../shaders/vertex.glsl'
 import fragmentShader from '../shaders/fragment.glsl';
 import sound from '../scripts/sound'
 
-export function initThreeJs(refContainer: any) {
+export async function initThreeJs(refContainer: any) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer();
@@ -35,12 +35,15 @@ export function initThreeJs(refContainer: any) {
   const listener = new THREE.AudioListener();
   camera.add(listener);
 
-  const analyser = sound(listener);
+  const analyser = await sound(listener);
+  
   const clock = new THREE.Clock();
   const animate = function () {
     requestAnimationFrame(animate);
     uniforms.u_time.value = clock.getElapsedTime();
-    uniforms.u_freq.value = analyser.getAverageFrequency();
+    if (analyser) {
+      uniforms.u_freq.value = analyser.getAverageFrequency();
+    }
     sphere.rotation.x += 0.002;
     sphere.rotation.y += 0.002;
     renderer.render(scene, camera);
