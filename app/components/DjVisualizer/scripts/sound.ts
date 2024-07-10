@@ -4,8 +4,6 @@ import fetchVoiceAudio from './fetchVoiceAudio';
 // fetch music here voice here later
 export default async function sound(listener: THREE.AudioListener) {
   const data = await fetchVoiceAudio();
-
-  console.log(data);
     // Check if data is null or empty
   if (!data || data.length === 0) {
     console.error('No songs found or data is null.');
