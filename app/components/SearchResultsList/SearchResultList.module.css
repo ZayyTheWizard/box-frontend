@@ -3,6 +3,6 @@
     height: 32%;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
     background-color: transparent;
 }
